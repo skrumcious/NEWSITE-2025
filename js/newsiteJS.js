@@ -116,75 +116,7 @@ document.getElementById('contact').addEventListener('click', () => {
           }
         }
       });
-
-      // handle target slide: if it is a video, play it; if it's an img that points to an mp4, replace it with a muted looping video and play
-      const target = children[idx];
-      if(!target) return;
-      // direct video element
-      if(target.tagName === 'VIDEO'){
-        try{ target.muted = true; target.currentTime = 0; target.play(); }catch(e){}
-        return;
-      }
-      // image element that may point to mp4
-      if(target.tagName === 'IMG'){
-        const src = target.getAttribute('src') || '';
-        if(src.match(/\.mp4(\?|$)/i)){
-          // if not already replaced, create a video element
-          const video = document.createElement('video');
-          video.playsInline = true;
-          video.muted = true;
-          video.loop = true;
-          video.style.width = '100%';
-          video.style.height = '100%';
-          const source = document.createElement('source');
-          source.src = src;
-          source.type = 'video/mp4';
-          video.appendChild(source);
-          target.replaceWith(video);
-          try{ video.play(); }catch(e){}
-        }
-        return;
-      }
-      // otherwise, check for nested video or img
-      const nestedVideo = target.querySelector && target.querySelector('video');
-      if(nestedVideo){ try{ nestedVideo.muted = true; nestedVideo.currentTime = 0; nestedVideo.play(); }catch(e){}; 
-        // ensure the slide is snapped in case sizes changed
-        setTimeout(()=>{
-          try{ const updated = Array.from(slider.children)[idx]; if(updated) slider.scrollTo({ left: updated.offsetLeft || 0, behavior: 'smooth' }); }catch(e){}
-        }, 140);
-        return;
-      }
-      const nestedImg = target.querySelector && target.querySelector('img');
-      if(nestedImg){ const src = nestedImg.getAttribute('src')||''; if(src.match(/\.mp4(\?|$)/i)){
-          const video = document.createElement('video');
-          video.playsInline=true; video.muted=true; video.loop=true;
-          video.style.width='100%'; video.style.height='100%'; video.style.display='block'; video.style.objectFit='cover';
-          const source = document.createElement('source'); source.src=src; source.type='video/mp4'; video.appendChild(source);
-          // Replace the image with the video but then re-snap to its offset so scrolling lines up
-          nestedImg.replaceWith(video);
-          try{video.play();}catch(e){}
-          setTimeout(()=>{
-            try{ const updated = Array.from(slider.children)[idx]; if(updated) slider.scrollTo({ left: updated.offsetLeft || 0, behavior: 'smooth' }); }catch(e){}
-          }, 140);
-        }
-      }
     }
-
-    slider.addEventListener('scroll', ()=>{
-      if(scrollTimeout) clearTimeout(scrollTimeout);
-      stopAuto();
-      // compute nearest child by offset and activate it
-      const children = Array.from(slider.children);
-      const scrollLeft = slider.scrollLeft || 0;
-      let nearest = 0; let nearestDiff = Infinity;
-      children.forEach((c,i)=>{
-        const diff = Math.abs((c.offsetLeft || 0) - scrollLeft);
-        if(diff < nearestDiff){ nearestDiff = diff; nearest = i; }
-      });
-      activateIndex(nearest);
-      scrollTimeout = setTimeout(()=> startAuto(), 1200);
-    }, {passive:true});
-
     // ensure initial activation of first slide
     setTimeout(()=> activateIndex(0), 200);
 

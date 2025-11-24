@@ -213,9 +213,14 @@ margin: 0 auto;
     border-radius: 0.5rem;
 }
 
-.slider img{
+.slider img,
+.slider video{
     flex: 1 0 100%;
- scroll-snap-align: start;   
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    scroll-snap-align: start;
+    min-width: 100%;
 }
 
 .slider-nav{
