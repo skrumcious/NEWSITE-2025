@@ -147,9 +147,27 @@ document.getElementById('contact').addEventListener('click', () => {
       }
       // otherwise, check for nested video or img
       const nestedVideo = target.querySelector && target.querySelector('video');
-      if(nestedVideo){ try{ nestedVideo.muted = true; nestedVideo.currentTime = 0; nestedVideo.play(); }catch(e){}; return; }
+      if(nestedVideo){ try{ nestedVideo.muted = true; nestedVideo.currentTime = 0; nestedVideo.play(); }catch(e){}; 
+        // ensure the slide is snapped in case sizes changed
+        setTimeout(()=>{
+          try{ const updated = Array.from(slider.children)[idx]; if(updated) slider.scrollTo({ left: updated.offsetLeft || 0, behavior: 'smooth' }); }catch(e){}
+        }, 140);
+        return;
+      }
       const nestedImg = target.querySelector && target.querySelector('img');
-      if(nestedImg){ const src = nestedImg.getAttribute('src')||''; if(src.match(/\.mp4(\?|$)/i)){ const video = document.createElement('video'); video.playsInline=true; video.muted=true; video.loop=true; video.style.width='100%'; video.style.height='100%'; const source = document.createElement('source'); source.src=src; source.type='video/mp4'; video.appendChild(source); nestedImg.replaceWith(video); try{video.play();}catch(e){} } }
+      if(nestedImg){ const src = nestedImg.getAttribute('src')||''; if(src.match(/\.mp4(\?|$)/i)){
+          const video = document.createElement('video');
+          video.playsInline=true; video.muted=true; video.loop=true;
+          video.style.width='100%'; video.style.height='100%'; video.style.display='block'; video.style.objectFit='cover';
+          const source = document.createElement('source'); source.src=src; source.type='video/mp4'; video.appendChild(source);
+          // Replace the image with the video but then re-snap to its offset so scrolling lines up
+          nestedImg.replaceWith(video);
+          try{video.play();}catch(e){}
+          setTimeout(()=>{
+            try{ const updated = Array.from(slider.children)[idx]; if(updated) slider.scrollTo({ left: updated.offsetLeft || 0, behavior: 'smooth' }); }catch(e){}
+          }, 140);
+        }
+      }
     }
 
     slider.addEventListener('scroll', ()=>{
@@ -266,7 +284,7 @@ document.getElementById('contact').addEventListener('click', () => {
   function humanize(str){
     if(!str) return '';
     // replace camelCase and underscores/hyphens with spaces
-    return str
+      return str
       .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
       .replace(/[_-]+/g, ' ')
       .replace(/\s+/g,' ')
