@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="newsiteSTYLE.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="module" src="./js/ContactForm.js"></script>
+<script>
+        (function() {
+            // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+            emailjs.init('-fgH7Bs-ptwSUjnGH');
+        })();
+    </script>
+<title>Vivian Studio</title>
+</head>
+
+
+<body>
+<div id="pageWipe" class="page-wipe" aria-hidden="true"></div>
+<div class="navigate">
+  <div class="logotext">
+   <h1>Vivian Studio<a style="text-decoration: underline; font: italic 1.24rem Arial; text-transform: lowercase;" href="https://www.instagram.com/skrumciouss/"> by @skrumciouss</a>
+     <h2>Creating your vision 
+       <br/>Visualising your creations.
+     </h2>
+   </h1>
+  </div>  
+       <nav class="menu">
+         <!-- <h3><a href="work.html">Work</a></h3> -->
+         <button id="contact" href="contact.html"><a>Contact</a></button>
+         <!-- <h3><a href="about.html">About</a></h3> -->
+       </nav>
+</div>
+
+
+<div class="flexbox">
+  <div class="container"> 
+    <div class="works">
+      <div class="video-wrapper" data-title="Liquid Simulation - Houdini">
+        <video id="liquidSim" autoplay loop muted playsinline>
+          <source src="/videos/Full Moon Ninh Binh.mp4" type="video/mp4"/>
+        </video>
+        <div class="video-hover-overlay" aria-hidden="true">
+          <div class="title"></div>
+          <button class="cta">Watch full video</button>
+        </div>
+      </div>
+      <div class="video-wrapper" data-title="Masseuse Massage Chairs RDP VFX">
+        <video id="mmMornington" autoplay loop muted playsinline>
+          <source src="/videos/RDP Features VFX MASTER V3 Denoised 250808.mp4" type="video/mp4"/>
+        </video>
+        <div class="video-hover-overlay" aria-hidden="true">
+          <div class="title"></div>
+          <button class="cta">Watch full video</button>
+        </div>
+      </div>
+      <div class="video-wrapper" data-title="Masseuse Massage Chairs Physio+ VFX">
+        <video id="mmPhysio" autoplay loop muted playsinline>
+          <source src="/videos/Physio+ Features VFX MASTER.mp4" type="video/mp4"/>
+        </video>
+        <div class="video-hover-overlay" aria-hidden="true">
+          <div class="title"></div>
+          <button class="cta">Watch full video</button>
+        </div>
+      </div>
+      <div class="video-wrapper" data-title="AP Dhillon & Shinda Kahlon - HITMEN (Official Music Video)">
+        <video id="dhillonShinda" autoplay loop muted playsinline>
+          <source src="/videos/dhillon Shinda rotojob.mp4" type="video/mp4"/>
+        </video>
+        <div class="video-hover-overlay" aria-hidden="true">
+          <div class="title"></div>
+          <button class="cta">Watch full video</button>
+        </div>
+      </div>
+      <div class="video-wrapper" data-title="RDCworld Creator League CGI Trailer Crowd Simulation">
+        <video id="RDC" autoplay loop muted playsinline>
+          <source src="/videos/RDC WORLD CGI TRAILER.mp4" type="video/mp4"/>
+        </video>
+        <div class="video-hover-overlay" aria-hidden="true">
+          <div class="title"></div>
+          <button class="cta">Watch full video</button>
+        </div>
+      </div>
+      <div class="slider-wrapper" id="visionbts">
+        <div class="slider">
+          <img id="slide-1" src="/images/vision bts shots/vision shoe detail cu.JPG">
+          <img id="slide-2" src="/images/vision bts shots/best bts shot.JPG">
+          <img id="slide-3" src="/images/vision bts shots//namdi midair.JPG">
+          <img id="slide-5" src="/images/vision bts shots/coolfisheyecam ls.JPG">
+          <img id="slide-4" src="/images/vision bts shots/dean sititng.JPG">
+        </div>
+          <div class="slider-nav" id="visionNav"> 
+            <a href="#slide-1"></a>
+            <a href="#slide-2"></a>
+            <a href="#slide-3"></a>
+            <a href="#slide-4"></a>
+            <a href="#slide-5"></a>
+          </div>
+               <h2>Vision Street Wear FW 2025 <br> Role: Producer/Casting Director
+              <br>Behind the Scenes on 35mm film</h2>
+      </div>
+    
+    <div class="slider-wrapper" id="threeDslider">
+        <div class="slider">
+         <img id="threeDslide-1" src="/images/3d work slider/revolver tutorial.png">
+         <img id="threeDslide-2" src="/images/3d work slider/isaawatch.webp">
+         <img id="threeDslide-3" src="/images/3d work slider/Skrumcious Desk Orbit!.mp4">
+         <img id="threeDslide-4" src="/images/3d work slider/sleepwalkerbest.jpg">
+         <img id="threeDslide-5" src="/images/3d work slider/SDF SoftBodies Edit.mp4">
+         <img id="threeDslide-6" src="/images/3d work slider/knife_bokeh.jpg">
+        </div>  
+      <div class="slider-nav" id="threeDnav"> 
+        <a href="#threeDslide-1"></a>
+        <a href="#threeDslide-2"></a>
+        <a href="#threeDslide-3"></a>
+        <a href="#threeDslide-4"></a>
+        <a href="#threeDslide-5"></a> 
+        <a href="#threeDslide-6"></a>
+      </div>
+            <h1 style="font-size:3.2em;">3D Work</h1>
+
+    </div>
+    </div>
+  </div>  
+</div>
+
+<script src="/js/newsiteJS.js">
+</script>
+</body>
+</html>
